@@ -7,5 +7,6 @@ package com.xxx.business.util;
  * 
  */
 public class DataBaseFactory {
+	private DataBaseFactory instrance = null;
 
 }
