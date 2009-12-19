@@ -12,5 +12,6 @@
 			<attribute name="owner.project.facets" value="jst.java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/javaEE/Jbdc/Oracle/Oracle 10g 10.2.0.4 JDBC_ojdbc14.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
