@@ -2,7 +2,7 @@ package com.xxx.dao;
 
 import java.util.List;
 
-import com.xh.entity.User;
+import com.xxx.right.entity.User;
 
 public interface UserDao {
 	/**
