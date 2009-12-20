@@ -10,9 +10,9 @@ import java.util.List;
 
 import oracle.jdbc.OracleTypes;
 
-import com.xh.entity.User;
 import com.xxx.common.util.ConnectionDataBase;
 import com.xxx.dao.UserDao;
+import com.xxx.right.entity.User;
 
 public class UserService implements UserDao {
 	private static Connection conn = null;
