@@ -10,6 +10,11 @@ import java.util.Date;
  */
 public class Module {
 	/**
+	 * 父节点
+	 */
+	private Integer parentId;
+
+	/**
 	 * 模块 主键
 	 */
 	private Integer id;
@@ -56,6 +61,14 @@ public class Module {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
 	}
 
 }
