@@ -4,6 +4,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>管理平台</title>
+<script type="text/javascript">
+/*用户登录*/
+  function login(){
+	  var username=document.getElementById('username').value;
+	  if(username.length==0){
+		输入用户名');
+		return;
+		 }
+	  var password=document.getElementById('password').value;
+	  if(password.length==0){
+		   alert('请输入用户名');
+		   return;
+	   }
+	  else{
+		alert('提交了');
+		  }
+	  
+
+	  };
+</script>
 <style type="text/css">
 <!--
 body {
@@ -28,6 +48,7 @@ body {
 </head>
 
 <body>
+<form action="">
 <table width="100%" height="100%" border="0" cellpadding="0"
 	cellspacing="0">
 	<tr>
@@ -52,20 +73,20 @@ body {
 								<div align="center"><span class="STYLE3">用户</span></div>
 								</td>
 								<td width="79%" height="30"><input type="text"
-									name="textfield"
+									name="username"
 									style="height: 18px; width: 130px; border: solid 1px #cadcb2; font-size: 12px; color: #81b432;"></td>
 							</tr>
 							<tr>
 								<td height="30">
 								<div align="center"><span class="STYLE3">密码</span></div>
 								</td>
-								<td height="30"><input type="password" name="textfield2"
+								<td height="30"><input type="password" name="password"
 									style="height: 18px; width: 130px; border: solid 1px #cadcb2; font-size: 12px; color: #81b432;"></td>
 							</tr>
 							<tr>
 								<td height="30">&nbsp;</td>
 								<td height="30"><img src="images/dl.gif" width="81"
-									height="22" border="0" usemap="#Map"></td>
+									onclick="login();" height="22" border="0" usemap="#Map"></td>
 							</tr>
 						</table>
 						</td>
@@ -104,7 +125,7 @@ body {
 		<td bgcolor="#a2d962">&nbsp;</td>
 	</tr>
 </table>
-
+</form>
 <map name="Map">
 	<area shape="rect" coords="3,3,36,19" href="#">
 	<area shape="rect" coords="40,3,78,18" href="#">
