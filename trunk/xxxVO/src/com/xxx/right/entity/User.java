@@ -1,4 +1,4 @@
-package com.xh.entity;
+package com.xxx.right.entity;
 
 public class User {
 	private Integer id;
@@ -86,8 +86,8 @@ public class User {
 	@Override
 	public String toString() {
 
-		return "µØÖ·" + this.address + "ÖØ¸´ÃÜÂë" + this.agePassword + "Email"
-				+ this.email + "µÇÂ½Ãû" + this.loginName + "Ãû×Ö" + this.name + "ÃÜÂë"
+		return "ï¿½ï¿½Ö·" + this.address + "ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½" + this.agePassword + "Email"
+				+ this.email + "ï¿½ï¿½Â½ï¿½ï¿½" + this.loginName + "ï¿½ï¿½ï¿½ï¿½" + this.name + "ï¿½ï¿½ï¿½ï¿½"
 				+ this.password;
 	}
 
