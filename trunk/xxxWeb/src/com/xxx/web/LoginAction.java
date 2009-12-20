@@ -14,9 +14,9 @@ import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.xh.dao.UserDao;
 import com.xh.entity.User;
-import com.xh.service.UserService;
+import com.xxx.dao.UserDao;
+import com.xxx.service.UserService;
 
 @SuppressWarnings("serial")
 public class LoginAction extends ActionSupport {
