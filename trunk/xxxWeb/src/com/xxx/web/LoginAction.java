@@ -14,8 +14,8 @@ import org.apache.struts2.interceptor.RequestAware;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.xh.entity.User;
 import com.xxx.dao.UserDao;
+import com.xxx.right.entity.User;
 import com.xxx.service.UserService;
 
 @SuppressWarnings("serial")
