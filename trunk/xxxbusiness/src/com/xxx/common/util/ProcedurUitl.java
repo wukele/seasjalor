@@ -1,16 +1,16 @@
 package com.xxx.common.util;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
- * ʹ�ô洢��̰�����
+ * 调用存储 过程
  * 
  * @author xiaohe
- * 
+ * @date 2009-12-20
  */
-public abstract class ProcedurUitl implements Serializable {
-
+public abstract class ProcedurUitl {
+	
+	@SuppressWarnings("unchecked")
 	public List executeProcedureGetList(List list, String procedureName) {
 		return null;
 	}
