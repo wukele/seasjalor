@@ -1,5 +1,11 @@
 package com.xxx.right.entity;
 
+/**
+ * 用户类 VO
+ * 
+ * @author xiaohe
+ * 
+ */
 public class User {
 	private Integer id;
 	private String name;
@@ -81,14 +87,6 @@ public class User {
 
 	public void setRole(Integer role) {
 		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-
-		return "��ַ" + this.address + "�ظ�����" + this.agePassword + "Email"
-				+ this.email + "��½��" + this.loginName + "����" + this.name + "����"
-				+ this.password;
 	}
 
 }
