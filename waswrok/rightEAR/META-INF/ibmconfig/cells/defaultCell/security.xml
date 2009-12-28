@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<security:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:security="http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi" xmi:id="Security_1261920219593">
-  <authDataEntries xmi:id="JAASAuthData_1261920310421" alias="oracle" userId="scott" password="{xor}KzY4Oi0=" description="数据库连接"/>
-</security:Security>
