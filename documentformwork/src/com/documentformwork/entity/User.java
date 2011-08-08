@@ -4,29 +4,41 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_user")
 public class User implements Serializable {
+	public User(long userId, String name, String password) {
+
+		this.userId = userId;
+		this.name = name;
+		this.password = password;
+	}
+
+	public User() {
+	}
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String userId;
+	private long userId;
 	private String name;
 	private String password;
 
 	@Id
 	@Column(name = "id", unique = false)
-	public String getUserId() {
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
