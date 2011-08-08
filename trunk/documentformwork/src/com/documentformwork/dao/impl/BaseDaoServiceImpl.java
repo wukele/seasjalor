@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.jpa.JpaCallback;
 import org.springframework.orm.jpa.support.JpaDaoSupport;
 
@@ -15,12 +17,14 @@ import com.documentformwork.dao.BaseDao;
 @SuppressWarnings("unchecked")
 public class BaseDaoServiceImpl<T, ID extends Serializable> extends
 		JpaDaoSupport implements BaseDao<T, ID> {
-
+	static final Log logger = LogFactory.getLog(BaseDaoServiceImpl.class);
 	private Class persistentClass;
 
 	public BaseDaoServiceImpl() {
 		this.persistentClass = (Class) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
+		logger.info("当前实体类:"+this.persistentClass.getName());
+		
 	}
 
 	public Class getPersistentClass() {
@@ -68,11 +72,12 @@ public class BaseDaoServiceImpl<T, ID extends Serializable> extends
 	}
 
 	@Override
-	public int findRowCount() {
-		return (Integer) getJpaTemplate().execute(new JpaCallback() {
+	public long findRowCount() {
+		return  (Long)getJpaTemplate().execute(new JpaCallback() {
 			public Object doInJpa(EntityManager em) throws PersistenceException {
 				StringBuffer sql = new StringBuffer("select count(*) from  ");
 				sql.append(" " + persistentClass.getName());
+				System.out.println("查询语句SQL"+sql);
 				return em.createQuery(sql + "").getResultList().get(0);
 			}
 		});
