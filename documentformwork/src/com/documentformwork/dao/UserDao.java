@@ -1,9 +1,8 @@
 package com.documentformwork.dao;
 
-import com.documentformwork.model.User;
+import com.documentformwork.entity.User;
 
-public interface UserDao {
-
-	public boolean login(User user);
+public interface UserDao extends BaseDao<User, Integer> {
+	
 
 }
