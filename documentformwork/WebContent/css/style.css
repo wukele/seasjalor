@@ -1,0 +1,94 @@
+/*
+*******************************************Begin 自定义图片资源**********************************************
+*/
+.x-button-add {
+	background-image: url(../images/button/add.gif) !important;
+}
+
+.x-button-mdy {
+	background-image: url(../images/button/modify.gif) !important;
+}
+
+.x-button-del {
+	background-image: url(../images/button/delete.gif) !important;
+}
+
+.x-button-save {
+	background-image: url(../images/button/save.gif) !important;
+}
+
+.x-button-return {
+	background-image: url(../images/button/return.gif) !important;
+}
+
+.x-button-query {
+	background-image: url(../images/button/query.gif) !important;
+}
+
+.x-button-cancel {
+	background-image: url(../images/button/delete.gif) !important;
+}
+
+.x-button-component {
+	background-image: url(../images/button/component.gif) !important;
+}
+
+.x-button-init {
+	background-image: url(../images/grid/refresh.gif) !important;
+}
+
+.x-button-tab {
+	background-image: url(../images/button/tabs.gif) !important;
+}
+
+.x-button-grid {
+	background-image: url(../images/button/grid.png) !important;
+}
+
+.x-button-expand {
+	background-image: url(../images/button/expand-all.gif) !important;
+}
+
+.x-button-collapse {
+	background-image: url(../images/button/collapse-all.gif) !important;
+}
+
+.x-button-excel {
+	background-image: url(../images/button/excel.gif) !important;
+}
+
+.x-button-pdf {
+	background-image: url(../images/button/pdf.gif) !important;
+}
+
+.x-button-view {
+	background-image: url(../images/button/view.gif) !important;
+}
+
+.x-button-print {
+	background-image: url(../images/button/print.gif) !important;
+}
+
+.x-button-reset {
+	background-image: url(../images/button/reset.gif) !important;
+}
+
+.x-button-upload {
+	background-image: url(../images/button/upload-start.gif) !important;
+}
+
+.x-button-down {
+	background-image: url(../images/button/down-start.gif) !important;
+}
+
+.x-button-go {
+	background-image: url(../images/button/go.gif) !important;
+}
+
+.x-button-checked {
+	background-image: url(../images/menu/group-checked.gif) !important;
+}
+
+/*
+*******************************************End 自定义图片资源**********************************************
+*/
