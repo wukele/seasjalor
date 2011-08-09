@@ -3,11 +3,20 @@ package com.documentformwork.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
+
 import org.springframework.web.servlet.ModelAndView;
 
-public class GeneralController extends BaseController {
+import com.documentformwork.service.SystemService;
+import com.documentformwork.system.SystemConfig;
 
+public class GeneralController extends BaseController {
+	private SystemService service;
 	private String indexView;
+
+	public final void setService(SystemService service) {
+		this.service = service;
+	}
 
 	public String getIndexView() {
 		return indexView;
@@ -26,8 +35,15 @@ public class GeneralController extends BaseController {
 	 */
 	public ModelAndView index(HttpServletRequest request,
 			HttpServletResponse response) {
-		System.out.println("失去容易回头真难，日志在怀");
 		return new ModelAndView(this.indexView);
+	}
+
+	public ModelAndView getModuleByRoot(HttpServletRequest request,
+			HttpServletResponse response) {
+		//System.out.println(service);
+		this.write(response, JSONArray.fromObject(SystemConfig.getUserRoot().getModules()).toString());
+		return null;
+
 	}
 
 }
