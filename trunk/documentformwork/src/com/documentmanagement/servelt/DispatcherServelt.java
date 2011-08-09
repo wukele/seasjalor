@@ -14,10 +14,10 @@ public class DispatcherServelt extends DispatcherServlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("Æô¶¯DispatcherServlet start");
+		System.out.println("DispatcherServlet start");
 		
 		super.init(config);
-		System.out.println("Æô¶¯DispatcherServlet end");
+		System.out.println("DispatcherServlet end");
 	}
 
 }
