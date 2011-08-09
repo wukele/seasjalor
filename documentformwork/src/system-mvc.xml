@@ -7,6 +7,8 @@
   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
+	<!-- 配置Bean -->
+
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
@@ -20,12 +22,22 @@
 			key="/hello.do">helloController</prop> </props> </property>
 		-->
 	</bean>
-
-
 	<bean name="/login.do" class="com.documentformwork.controller.LoginController">
-		<property name="defaultView">
-			<value>jsp/main</value>
-		</property>
+		<property name="defaultView" value="jsp/login" />
 
 	</bean>
+
+	<bean name="/common.do" class="com.documentformwork.controller.GeneralController">
+		<property name="indexView" value="/main" />
+	</bean>
+
+	<!-- 配置文档管理页面 -->
+
+	<bean name="/documentManage.do"
+		class="com.documentformwork.controller.DoucmentMangeController">
+		<property name="addView" value="/document/add" />
+	</bean>
+
+
+
 </beans>
