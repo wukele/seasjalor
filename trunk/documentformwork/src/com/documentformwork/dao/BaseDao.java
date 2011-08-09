@@ -21,6 +21,6 @@ public interface BaseDao<T, ID extends Serializable> {
 
 	public List findAll();
 
-	public int findRowCount();
+	public long findRowCount();
 
 }
