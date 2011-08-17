@@ -10,32 +10,23 @@ Ext.namespace("privilegesystem.web.index");
  * @param {}
  *            itemConfig
  */
+
 privilegesystem.web.index.MenuTreePanel = function(treeConfig) {
+
+	this.addEvents({
+
+	});
 	var config = {
-		title : treeConfig.text,
-		// dataUrl : contextPath + '/right.action',
-		loader : new Ext.tree.TreeLoader({
-					url : contextPath + '/common.do?method=getModuleByRoot',
-					baseAttrs : {
-						url : "url"
-					}
-				}),
-		root : new Ext.tree.AsyncTreeNode({
-					id : treeConfig.id,
-					isTarget : false,
-					listeners : {
-						'beforeload' : function(treeLoader, n) {
-						}
-					}
-				}),
-		rootVisible : false,
-		leaf : treeConfig.leaf,
-		dataMap : {
-			//id : 'id',
-			text : 'text',
-			leaf : 'leaf',
-			link : 'url'
-		}
+		// title : treeConfig.text,
+		root : root,
+		rootVisible : false
+		// leaf : treeConfig.leaf,
+		// dataMap : {
+		// id : 'id',
+		// text : 'text',
+		// leaf : 'leaf',
+		// link : 'url'
+		// }
 
 	};
 	/**
@@ -65,6 +56,5 @@ Ext.extend(privilegesystem.web.index.MenuTreePanel, Ext.tree.TreePanel, {
 								Ext.getCmp("centerPanel").addTab(node);
 							}
 						});
-
 			}
 		});

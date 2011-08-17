@@ -1,9 +1,10 @@
 package com.documentformwork.system;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
+
+import org.apache.commons.logging.Log;
 
 import com.documentformwork.model.Module;
 import com.documentformwork.model.UserRoot;
@@ -15,6 +16,7 @@ import com.documentformwork.model.UserRoot;
  * 
  */
 public class SystemConfig {
+	final static Log logger = org.apache.commons.logging.LogFactory.getLog(SystemConfig.class);
 	private static Map<String, String> mapConfig = null;
 
 	private static UserRoot userRoot;
@@ -41,7 +43,7 @@ public class SystemConfig {
 	 * @param prop
 	 */
 	public static synchronized void initApplicationConfig(Properties prop) {
-		
+
 		mapConfig = new HashMap<String, String>();
 		Map<String, Module> moduleMap = new HashMap<String, Module>();
 		userRoot = new UserRoot();
@@ -70,7 +72,7 @@ public class SystemConfig {
 			}
 
 		}
-		for (int i = 0; i < 999; ++i) {
+		for (int i =1; i < 999; ++i) {
 			Module module = moduleMap.get("" + i);
 			if (module != null) {
 				userRoot.addModule(module);
@@ -78,6 +80,6 @@ public class SystemConfig {
 				break;
 			}
 		}
-
+		logger.info(userRoot.getModules().size());
 	}
 }
