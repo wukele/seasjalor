@@ -15,7 +15,6 @@ String contextPath = request.getContextPath();
 		<title>首页</title>
 		<system:theme />
 		<!-- 包含ext js -->
-	
 			<script type="text/javascript"
 			src="<%=contextPath%>/js/index/centerPanel.js"></script>
 		<script type="text/javascript"

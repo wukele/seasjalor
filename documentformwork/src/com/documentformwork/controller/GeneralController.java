@@ -3,8 +3,6 @@ package com.documentformwork.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
-
 import org.springframework.web.servlet.ModelAndView;
 
 import com.documentformwork.service.SystemService;
@@ -40,8 +38,9 @@ public class GeneralController extends BaseController {
 
 	public ModelAndView getModuleByRoot(HttpServletRequest request,
 			HttpServletResponse response) {
-		//System.out.println(service);
-		this.write(response, JSONArray.fromObject(SystemConfig.getUserRoot().getModules()).toString());
+		// System.out.println(service);
+		this.write(response, SystemConfig.getUserRoot().createModuleTree()
+				.toJSonString());
 		return null;
 
 	}

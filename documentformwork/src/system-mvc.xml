@@ -26,9 +26,16 @@
 		<property name="defaultView" value="jsp/login" />
 
 	</bean>
-
+	<!-- 公共Controller -->
 	<bean name="/common.do" class="com.documentformwork.controller.GeneralController">
 		<property name="indexView" value="/main" />
+	</bean>
+
+	<!-- 权限Controller -->
+
+	<bean name="/privilege.do"
+		class="com.documentformwork.controller.PrivilegeController">
+		<property name="listView" value="/privileges/index" />
 	</bean>
 
 	<!-- 配置文档管理页面 -->
@@ -36,6 +43,7 @@
 	<bean name="/documentManage.do"
 		class="com.documentformwork.controller.DoucmentMangeController">
 		<property name="addView" value="/document/add" />
+		<property name="indexView" value="/document/index"/>
 	</bean>
 
 

@@ -2,13 +2,8 @@
 /**
  * 初始化 首页
  */
+
 init = function() {
-	// 设置图片地址
-	Ext.BLANK_IMAGE_URL = contextPath + "/resources/images/default/s.gif";
-
-	// 创建首页
-	// var centerPanel = new privilegesystem.web.index.CenterPanel(null);
-
 	// 框架布局
 	var viewPort = new Ext.Viewport({
 		layout : 'border',
@@ -28,3 +23,5 @@ init = function() {
 
 	});
 };
+
+
