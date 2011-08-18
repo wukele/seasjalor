@@ -79,6 +79,7 @@
 	    this.grid = new Ext.grid.GridPanel({      
 	    title:'上传',
 		ds: mine.ds,
+		renderTo:'showUpload',
 	    cm: cm,
 	    sm: sm,	
 	    frame:true,	  
