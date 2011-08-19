@@ -92,7 +92,7 @@ String contextPath = request.getContextPath();
 			columnLines: true,
 			stateful: true,
 		    autoScroll: 'auto',
-		    height:200,
+		    height:600,
 	        store: documentStore,
 	        loadMask: true,
 	        cm: new Ext.grid.ColumnModel({
@@ -126,6 +126,24 @@ String contextPath = request.getContextPath();
 	        })
 	      
 	    });
+	    /*创建树型菜单*/
+		var documentTreePanel = new Ext.tree.TreePanel({
+		    renderTo: 'documentTree',
+		    useArrows: true,
+		    autoScroll: true,
+		    animate: true,
+		    enableDD: true,
+		    containerScroll: true,
+		    border: true,
+		    root: {
+		        nodeType: 'async',
+		        text: 'Ext JS',
+		        draggable: false,
+		        id: 'source'
+		    }
+		});
+	
+				
 
 	
 	  //Hello
@@ -135,7 +153,8 @@ String contextPath = request.getContextPath();
 <div id="documentListDiv">
 <div id="documentListPathBarDiv"></div>
 <div id="documentListToolBarDiv"></div>
-<div id="documentListGridDiv" style="width: 100%; height: 100%;"></div>
+<div id="documentTree" style="float:left;width:10%"></div>
+<div id="documentListGridDiv" ></div>
 </div>
 </body>
 </html>
