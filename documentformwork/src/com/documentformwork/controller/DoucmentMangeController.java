@@ -60,12 +60,7 @@ public class DoucmentMangeController extends BaseController {
 	 */
 	public ModelAndView getDocumentList(HttpServletRequest request,
 			HttpServletResponse response) {
-		List<Document> list = service.getAllList();
-		System.out.println(JSONObject.fromObject(list));
-		System.out.println(JSONArray.fromObject(list));
-		JSONObject obj=new JSONObject();
-		obj.put("root", list);
-		this.write(response, obj.toString());
+		this.write(response, service.getGridJson2("select d from Document d"));
 		return null;
 	}
 }

@@ -6,36 +6,61 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "document")
 public class Document implements Serializable {
-
+	public Document(){
+		
+		
+	}
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue
+	@Column(name = "document_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(name = "document_name")
 	private String name;
-	
+
 	@Column(name = "type")
 	private String type;
-	
+
 	@Column(name = "update_user")
 	private String updateMan;
-	
+
 	@Column(name = "update_time")
 	private Date updateDate;
-	
+
 	@Column(name = "create_user")
 	private String createUser;
-	
+
 	@Column(name = "size")
-	private int size;
+	private long size;
+
+	@Column(name = "TAGS")
+	private String tags;
+
+	@Column(name = "LINK")
+	private String link;
+
+	@Column(name = "PARENT_ID")
+	private String parentId;
+
+	@Column(name = "STATUS")
+	private String status;
+
+	@Column(name = "DELFLAG")
+	private String delflag;
+
+	@Column(name = "CREATE_TIME")
+	private Date createeDate;
 
 	public long getId() {
 		return id;
@@ -85,12 +110,64 @@ public class Document implements Serializable {
 		this.createUser = createUser;
 	}
 
-	public int getSize() {
+	public long getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
-		this.size = size;
+	public void setSize(long size) {
+		if ((Long) size == null) {
+			this.size = 0;
+		} else {
+			this.size = size;
+		}
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getDelflag() {
+		return delflag;
+	}
+
+	public void setDelflag(String delflag) {
+		this.delflag = delflag;
+	}
+
+	public Date getCreateeDate() {
+		return createeDate;
+	}
+
+	public void setCreateeDate(Date createeDate) {
+		this.createeDate = createeDate;
 	}
 
 }
