@@ -13,14 +13,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "document")
 public class Document implements Serializable {
-	public Document(){
-		
-		
+	public Document() {
+
 	}
+
 	/**
 	 * 
 	 */
-	//private static final long serialVersionUID = 1L;
+	// private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "document_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -115,11 +115,7 @@ public class Document implements Serializable {
 	}
 
 	public void setSize(long size) {
-		if ((Long) size == null) {
-			this.size = 0;
-		} else {
 			this.size = size;
-		}
 	}
 
 	public String getTags() {
