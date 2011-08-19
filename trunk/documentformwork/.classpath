@@ -48,7 +48,7 @@
 	<classpathentry kind="lib" path="D:/AltairWork/altairwork/documentformwork/WebContent/WEB-INF/lib/geronimo-servlet_2.5_spec-1.2.jar"/>
 	<classpathentry kind="lib" path="D:/AltairWork/altairwork/documentformwork/WebContent/WEB-INF/lib/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
 	<classpathentry kind="lib" path="D:/AltairWork/altairwork/documentformwork/WebContent/WEB-INF/lib/geronimo-ws-metadata_2.0_spec-1.1.2.jar"/>
-	<classpathentry kind="lib" path="D:/AltairWork/altairwork/documentformwork/WebContent/WEB-INF/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="D:/AltairWork/altairwork/documentformwork/WebContent/WEB-INF/lib/hibernate3.jar" sourcepath="D:/JavaEE/opensource/spring/hibernate-3.0/hibernate-3.0/src"/>
 	<classpathentry kind="lib" path="D:/AltairWork/altairwork/documentformwork/WebContent/WEB-INF/lib/hibernate-annotations.jar"/>
 	<classpathentry kind="lib" path="D:/AltairWork/altairwork/documentformwork/WebContent/WEB-INF/lib/hibernate-commons-annotations.jar"/>
 	<classpathentry kind="lib" path="D:/AltairWork/altairwork/documentformwork/WebContent/WEB-INF/lib/hibernate-entitymanager.jar" sourcepath="D:/JavaEE/opensource/spring/hibernate-3.0/hibernate-3.0/src"/>
