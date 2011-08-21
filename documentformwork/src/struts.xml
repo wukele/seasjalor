@@ -7,7 +7,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.multipart.maxSize" value="2147483648" />
 	<package name="upload" extends="struts-default">
-		<action name="upload" class="upload.action.UploadAction">
+		<action name="upload" class="com.formwork.action.UploadAction">
 		</action>
 	</package>
 

@@ -45,6 +45,12 @@
 		<property name="addView" value="/document/add" />
 		<property name="indexView" value="/document/index" />
 	</bean>
+	
+	<!-- 配置Struts2 Action -->
+	
+	<bean name="upload" class="com.formwork.action.UploadAction" scope="prototype">
+		<property name="service" ref="documentService"/>
+	</bean>
 
 
 
