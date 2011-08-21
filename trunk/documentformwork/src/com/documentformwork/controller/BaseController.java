@@ -76,6 +76,9 @@ public abstract class BaseController extends AbstractController {
 	 */
 	public void write(HttpServletResponse response, String content) {
 		try {
+			response.setHeader("Pragma", "No-cache");
+			response.setHeader("Cache-Control", "no-cache");
+			response.setDateHeader("Expires", -10);
 			response.getWriter().write(content);
 		} catch (IOException e) {
 			throw new RuntimeException(e);

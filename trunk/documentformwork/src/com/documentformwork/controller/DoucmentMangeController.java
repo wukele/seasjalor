@@ -1,17 +1,11 @@
 package com.documentformwork.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.springframework.web.servlet.ModelAndView;
 
 import com.documentformwork.dao.DocumentDao;
-import com.documentformwork.entity.Document;
 
 public class DoucmentMangeController extends BaseController {
 
