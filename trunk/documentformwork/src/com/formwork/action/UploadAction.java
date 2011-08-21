@@ -8,7 +8,13 @@ import java.util.UUID;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.documentformwork.dao.DocumentDao;
+import com.documentformwork.dao.impl.DocumentServiceImpl;
+import com.documentformwork.entity.Document;
+
 public class UploadAction {
+	private DocumentDao service=new DocumentServiceImpl();
+
 
 	private File Filedata;
 
@@ -18,7 +24,7 @@ public class UploadAction {
 
 	private static final String basePath = "uploads";
 
-	// 上传文件呵呵
+	// 上传文件
 	private String pathSplit(String timeStr, String o, String n) {
 		StringBuffer sb = new StringBuffer();
 		for (String a : timeStr.split(o)) {
@@ -29,13 +35,22 @@ public class UploadAction {
 		return sb.toString();
 	}
 
+	public DocumentDao getService() {
+		return service;
+	}
+
+	public void setService(DocumentDao service) {
+		this.service = service;
+	}
+
 	public static String format(Date date, String parttern) {
 		DateFormat df = new SimpleDateFormat(parttern);
 		return df.format(date);
 	}
 
 	public String execute() {
-
+		System.out.println(service);
+		System.out.println("======");
 		if (Filedata != null && Filedata.length() > 0) {
 			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 			String datastr = format(new Date(), "yyyy@MM@dd");
@@ -45,6 +60,9 @@ public class UploadAction {
 									+ pathSplit(datastr, "@", File.separator));
 			String ext = FiledataFileName.substring(FiledataFileName
 					.lastIndexOf("."));
+			String type=FiledataFileName.substring(FiledataFileName.lastIndexOf(".")+1); 
+			System.out.println("type:"+type);
+			long size=Filedata.length();
 			File path = new File(uploadPath);
 			if (!path.exists()) {
 				path.mkdirs();
@@ -54,6 +72,27 @@ public class UploadAction {
 			Filedata.renameTo(new File(newPath));
 			System.out.println(uploadPath);
 			System.out.println("FiledataFileName:" + FiledataFileName);
+			System.out.println("文件大小："+Filedata.length());
+		
+			
+			
+			Document document=new Document();
+			
+			document.setCreateeDate(new Date());
+			
+			document.setCreateUser("root");
+			document.setDelflag("false");
+			document.setName(FiledataFileName);
+			document.setType(type);
+			document.setSize(size);
+			document.setParentId("1");
+			document.setUpdateMan("root");
+			document.setIsLeaf("N");
+			document.setStatus("Y");
+			document.setDelflag("N");
+			document.setUpdateDate(new Date());
+			document.setLink(newPath);
+			this.service.save(document);
 		}
 
 		return null;
