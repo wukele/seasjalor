@@ -1,5 +1,7 @@
 package com.documentformwork.test;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -12,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.documentformwork.dao.DocumentDao;
 import com.documentformwork.dao.UserDao;
+import com.documentformwork.entity.Document;
 import com.documentformwork.entity.User;
 
 public class SpringBeanTest {
@@ -28,9 +31,28 @@ public class SpringBeanTest {
 		documentDao=(DocumentDao)context.getBean("documentService");
 	}
 
-	@Test 
+	//@Test 
 	public void testDocumentFindList(){
 		System.out.println(documentDao.getGridJson2(("select d from Document d")));
+		
+	}
+	@Test
+	public void testSavaDocument(){
+		Document document=new Document();
+		document.setCreateeDate(new Date());
+		
+		document.setCreateUser("root");
+		document.setDelflag("N");
+		document.setName("aaa");
+		document.setType("rar");
+		document.setSize(100);
+		document.setParentId("1");
+		document.setUpdateMan("root");
+		document.setUpdateDate(new Date());
+		document.setStatus("Y");
+		document.setLink("c:\\");
+		documentDao.save(document);
+		
 		
 	}
 	
