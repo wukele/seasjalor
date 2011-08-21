@@ -26,6 +26,17 @@ public class Document implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@Column(name = "ISLEAF")
+	private String isLeaf = "Y";
+
+	public String getIsLeaf() {
+		return isLeaf;
+	}
+
+	public void setIsLeaf(String isLeaf) {
+		this.isLeaf = isLeaf;
+	}
+
 	@Column(name = "document_name")
 	private String name;
 
@@ -44,7 +55,7 @@ public class Document implements Serializable {
 	@Column(name = "size")
 	private long size;
 
-	@Column(name = "TAGS")
+	@Column(name = "TAGS", nullable = true)
 	private String tags;
 
 	@Column(name = "LINK")
@@ -115,7 +126,7 @@ public class Document implements Serializable {
 	}
 
 	public void setSize(long size) {
-			this.size = size;
+		this.size = size;
 	}
 
 	public String getTags() {
