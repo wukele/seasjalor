@@ -45,7 +45,7 @@ public class SpringBeanTest {
 	@Test
 	public void testFileCategoryListById(){
 		
-		System.out.println(fileCategoryService.getFileTreeNodeById(1));
+		System.out.println(fileCategoryService.getTopFileTreeNode().get(0).getFileCategorys());
 	}
 
 	//@Test 
