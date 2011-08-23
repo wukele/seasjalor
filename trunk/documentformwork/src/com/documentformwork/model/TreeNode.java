@@ -7,7 +7,6 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.chainsaw.Main;
 
 public class TreeNode extends TreeData {
 	private boolean hasChild = false;

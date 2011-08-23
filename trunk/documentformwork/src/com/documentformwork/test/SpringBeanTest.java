@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.documentformwork.dao.DocumentDao;
+import com.documentformwork.dao.FileCategoryDao;
 import com.documentformwork.dao.UserDao;
 import com.documentformwork.entity.Document;
 import com.documentformwork.entity.User;
@@ -21,6 +22,9 @@ public class SpringBeanTest {
 	ApplicationContext context = null;
 	UserDao userDao = null;
 	DocumentDao documentDao=null;
+	
+	FileCategoryDao  fileCategoryService=null;
+	
 	long id;
 
 	@Before
@@ -29,6 +33,19 @@ public class SpringBeanTest {
 		userDao = (UserDao) context.getBean("userDao");
 		
 		documentDao=(DocumentDao)context.getBean("documentService");
+		
+		fileCategoryService=(FileCategoryDao)context.getBean("fileCategoryService");
+		System.out.println(fileCategoryService);
+	}
+	@Test
+	public void testFileCategoryList(){
+		System.out.println(fileCategoryService.getTopFileTreeNode());
+		
+	}
+	@Test
+	public void testFileCategoryListById(){
+		
+		System.out.println(fileCategoryService.getFileTreeNodeById(1));
 	}
 
 	//@Test 
@@ -36,7 +53,7 @@ public class SpringBeanTest {
 		System.out.println(documentDao.getGridJson2(("select d from Document d")));
 		
 	}
-	@Test
+//	@Test
 	public void testSavaDocument(){
 		Document document=new Document();
 		document.setCreateeDate(new Date());
