@@ -1,6 +1,7 @@
 package com.documentformwork.test;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,6 +17,7 @@ import com.documentformwork.dao.DocumentDao;
 import com.documentformwork.dao.FileCategoryDao;
 import com.documentformwork.dao.UserDao;
 import com.documentformwork.entity.Document;
+import com.documentformwork.entity.FileCategory;
 import com.documentformwork.entity.User;
 
 public class SpringBeanTest {
@@ -39,13 +41,18 @@ public class SpringBeanTest {
 	}
 	@Test
 	public void testFileCategoryList(){
-		System.out.println(fileCategoryService.getTopFileTreeNode());
+	System.out.println(documentDao);
+	List<FileCategory> list=fileCategoryService.getTopFileTreeNode();
+	for(FileCategory f:list){
+		System.out.println(f.getParentId());
+		
+	}
 		
 	}
 	@Test
 	public void testFileCategoryListById(){
 		
-		System.out.println(fileCategoryService.getTopFileTreeNode().get(0).getFileCategorys());
+	//System.out.println(fileCategoryService.getTopFileTreeNode());
 	}
 
 	//@Test 
