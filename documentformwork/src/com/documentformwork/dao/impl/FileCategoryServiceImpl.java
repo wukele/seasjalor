@@ -11,7 +11,7 @@ public class FileCategoryServiceImpl extends
 	@Override
 	public List<FileCategory> getTopFileTreeNode() {
 		return this
-				.findBySQL("select * from document_category where parent_id=0");
+			.findList("select f from FileCategory f ", null, 0,100);
 	}
 
 	@Override
