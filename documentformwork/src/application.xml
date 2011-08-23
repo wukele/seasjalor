@@ -57,6 +57,8 @@
 	<bean id="systemService" class="com.documentformwork.service.impl.SystemServiceImpl" autowire="byName" ></bean>
 		
 	<bean id="documentService" class="com.documentformwork.dao.impl.DocumentServiceImpl" autowire="byName" scope="prototype"></bean>
+	
+	<bean id="fileCategoryService" class="com.documentformwork.dao.impl.FileCategoryServiceImpl" autowire="byName" ></bean>
 
 	<!--<import resource="../config/system-config.xml" />-->
 

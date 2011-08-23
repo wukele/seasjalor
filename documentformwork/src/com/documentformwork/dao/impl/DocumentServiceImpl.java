@@ -7,24 +7,27 @@ import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.lang.SystemUtils;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.documentformwork.dao.DocumentDao;
 import com.documentformwork.entity.Document;
+import com.documentformwork.model.TreeNode;
 import com.documentformwork.util.FormworkUtil;
 
 @SuppressWarnings("unchecked")
 public class DocumentServiceImpl extends BaseDaoServiceImpl<Document, Integer>
-		implements DocumentDao {
+
+implements DocumentDao {
 	// @Override
 	// public List<Document> getAllList() {
 	// String sql = "select document_ID,document_name,type,size from document";
 	// return (List<Document>) this.findBySQL(sql);
 	// }
 	//
+	/**
+	 * 获取文档的列表
+	 */
 	public String getGridJson2(String query) {
 		List list = this.findList(query, null, 0, 100);
 		JSONArray array = new JSONArray();
@@ -60,6 +63,22 @@ public class DocumentServiceImpl extends BaseDaoServiceImpl<Document, Integer>
 		obj.put("root", array);
 		return obj.toString();
 
+	}
+
+	/**
+	 * 获取文档的文件类别树型结构
+	 */
+	public TreeNode getFileTreeNode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 获取最上层的文档
+	 */
+	public TreeNode getTopFileTreeNode() {
+		
+		return null;
 	}
 
 }
