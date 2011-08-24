@@ -140,7 +140,7 @@ String contextPath = request.getContextPath();
   Ext.onReady(function(){  
 	   Ext.QuickTips.init();
 	   Ext.form.Field.prototype.msgTarget = 'side';
-	   Ext.BLANK_IMAGE_URL =contextPath+'/ext2.2/images/s.gif';
+	   Ext.BLANK_IMAGE_URL =contextPath+'/ext2.2/images/default/s.gif';
 
 	  var documentListToolbar = new Ext.Toolbar({
 	    	renderTo: 'documentListToolBarDiv',
@@ -237,7 +237,7 @@ String contextPath = request.getContextPath();
 
 	//请求获取文档目录结构
 	 Ext.Ajax.request({
-		    url : contextPath+ '/common.do?method=getModuleByRoot',
+		    url : contextPath+ '/documentManage.do?method=getFileCategoryTreeNode',
 			method:'post',
 			success:loadDocumentTree,
 			failure:function(){
