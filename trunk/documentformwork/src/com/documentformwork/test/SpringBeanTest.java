@@ -44,7 +44,7 @@ public class SpringBeanTest {
 	System.out.println(documentDao);
 	List<FileCategory> list=fileCategoryService.getTopFileTreeNode();
 	for(FileCategory f:list){
-		System.out.println(f.getParentId());
+		System.out.println(f);
 		
 	}
 		
