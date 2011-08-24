@@ -42,7 +42,7 @@ public class FileCategory implements Serializable {
 	private Date updateDate;
 
 	@ManyToOne(cascade = {}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "parent_Id")
+	@JoinColumn(name = "parent_Id",unique = false, nullable = true, insertable = true, updatable = true)
 	private FileCategory parentId;
 
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "parentId")
