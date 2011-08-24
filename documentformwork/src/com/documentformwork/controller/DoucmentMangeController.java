@@ -6,10 +6,21 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.documentformwork.dao.DocumentDao;
+import com.documentformwork.dao.FileCategoryDao;
 
 public class DoucmentMangeController extends BaseController {
 
+	public FileCategoryDao getFileCategoryService() {
+		return fileCategoryService;
+	}
+
+	public void setFileCategoryService(FileCategoryDao fileCategoryService) {
+		this.fileCategoryService = fileCategoryService;
+	}
+
 	private DocumentDao service;
+
+	private FileCategoryDao fileCategoryService;
 
 	private String indexView;
 
@@ -55,6 +66,14 @@ public class DoucmentMangeController extends BaseController {
 	public ModelAndView getDocumentList(HttpServletRequest request,
 			HttpServletResponse response) {
 		this.write(response, service.getGridJson2("select d from Document d"));
+		return null;
+	}
+
+	public ModelAndView getFileCategoryTreeNode(HttpServletRequest request,
+			HttpServletResponse response) {
+		System.out.println(fileCategoryService);
+		this.write(response, fileCategoryService.getFileCategoryTreeNode()
+				.toJSONObject().toString());
 		return null;
 	}
 }
