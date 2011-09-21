@@ -13,9 +13,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "document")
 public class Document implements Serializable {
-	public Document() {
-
-	}
 
 	/**
 	 * 
@@ -71,7 +68,7 @@ public class Document implements Serializable {
 	private String delflag;
 
 	@Column(name = "CREATE_TIME")
-	private Date createeDate;
+	private Date createDate;
 
 	public long getId() {
 		return id;
@@ -169,12 +166,12 @@ public class Document implements Serializable {
 		this.delflag = delflag;
 	}
 
-	public Date getCreateeDate() {
-		return createeDate;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreateeDate(Date createeDate) {
-		this.createeDate = createeDate;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 }

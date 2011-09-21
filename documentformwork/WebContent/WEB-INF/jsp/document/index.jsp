@@ -95,7 +95,7 @@ String contextPath = request.getContextPath();
 	 		         ]);	   
 	 		         
 	 	    this.grid = new Ext.grid.GridPanel({      
-	 	    title:'上传表格',
+	 	//    title:'上传表格',
 	 		ds: mine.ds,
 	 	    cm: cm,
 	 	    sm: sm,	
@@ -164,7 +164,20 @@ String contextPath = request.getContextPath();
 				new Ext.Button({
 				    id: 'documentList-download-button',
 				    text: '下载',
-					iconCls: 'download'
+					iconCls: 'download',
+					handler:function(){
+					//获取选中的文件名字
+						var selectionModel=documentListGrid.getSelectionModel();
+						if(selectionModel.getCount()==0){
+								Ext.Msg.alert("Message","Please choose you want delete record");
+								return;
+						}else{						
+							var records=selectionModel.getSelections();
+							var fileName=records[0].get("name");
+							var createDate=records[0].get("createDate");
+					 		window.location.href=contextPath+"/download2.action?fileName="+fileName+"&createDate="+createDate;
+						}
+					}
 				}),
 				new Ext.Button({
 				    id: 'documentList-downloadzip-button',
@@ -180,16 +193,45 @@ String contextPath = request.getContextPath();
 				new Ext.Button({
 				    id: 'documentList-delete-button',
 				    text: '删除',
-					iconCls: 'delete'
+					iconCls: 'delete',
+					handler:function(){
+					var selectionModel=documentListGrid.getSelectionModel();
+					if(selectionModel.getCount()==0){
+							Ext.Msg.alert("Message","Please choose you want delete record");
+							return;
+						}
+					else{
+						//get selection file id
+						var records=selectionModel.getSelections();
+						var ids=new Array();
+						Ext.each(records,function(record,index){
+							ids.push(records[index].get("id"));
+							});
+						//send service process
+							Ext.Ajax.request({
+								url:contextPath+"/documentManage.do?method=deleteFile",
+								method:'post',
+								params:{id:ids},
+								success:function(response){
+										Ext.Msg.alert("msg","delete file success");
+										var baseParams={};
+										baseParams.start = 1;
+										documentListGrid.getStore().reload({params:baseParams});
+										//刷新表格数据
+									},failure:function(){
+												Ext.Msg.alert("error","Delete failure");
+										}
+								});
+						}
+					}
 				})]
 	 		});
 
 		var documentStore=new Ext.data.JsonStore({
 					  url:contextPath+'/documentManage.do?method=getDocumentList',
-					  fields: ['id', 'name', 'type', 'size', 'isleaf', 'createDateStr', 'link'],
+					  fields: ['id', 'name', 'type', 'size', 'isleaf', 'createDate', 'link','updateMan','updateDate','createUser','fileCategory'],
 					  root:'root',
 					  autoLoad:true
-						
 		});
 		// 用户数据表格
 		var sm = new Ext.grid.CheckboxSelectionModel();
@@ -199,7 +241,6 @@ String contextPath = request.getContextPath();
 			border: false,
 			columnLines: true,
 			stateful: true,
-		   // autoScroll: 'auto',
 		    height:document.documentElement.clientHeight,
 	        store: documentStore,
 	        loadMask: true,
@@ -212,12 +253,17 @@ String contextPath = request.getContextPath();
 							sm,
 							new Ext.grid.RowNumberer({header:'Number',width:100}),
 				            {id:'isleaf',header: '', width: 30, sortable: true, dataIndex: 'isleaf'},
-				            {id:'id',header: '文档ID', width: 100, sortable: true, dataIndex: 'id', hidden:true},
 				            {id:'name',header: '文件名', width: 200, sortable: true, dataIndex: 'name'},
 				            {id:'type',header: '类型', width: 50, sortable: true, dataIndex: 'type'},
 				            {id:'size',header: '大小', width: 100, sortable: true, dataIndex: 'size'},
-				            {id:'createDateStr',header: '时间', width: 150, sortable: true, dataIndex: 'createDateStr'},
-				            {id:'link',header: '链接', width: 150, sortable: true, dataIndex: 'link', hidden:true}
+				            {id:'createDate',header: '创建时间', width: 150, sortable: true, dataIndex: 'createDate'},
+				            {id:'updateMan',header: 'Updator', width: 150, sortable: true, dataIndex: 'updateMan'},
+				            {id:'updateDate',header: 'Update Time', width: 150, sortable: true, dataIndex: 'updateDate'},
+				            {id:'createUser',header: 'Creator', width: 150, sortable: true, dataIndex: 'createUser'},
+				            {id:'link',header: '链接', width: 150, sortable: true, dataIndex: 'link', hidden:true},
+				            {id:'fileCategory',header: 'fileCategory', width: 150, sortable: true, dataIndex: 'fileCategory'},
+				            {id:'id',header: 'ID', width: 100, sortable: true, dataIndex: 'id'
+					            },
 						]
 	        }),
 	        sm: sm,  
@@ -245,6 +291,7 @@ String contextPath = request.getContextPath();
 					"Server communication failure");
 			}
 		  });
+	  //加载树
 	  function loadDocumentTree(response){
 				var json=eval('('+response.responseText+')');
 				//创建节点
@@ -253,11 +300,13 @@ String contextPath = request.getContextPath();
 							text:json.text,
 							expanded:true
 					});
+				
 				buildTree(root,json.children);
 				initDocumentTree(root);
 		  };
-		  
+		  //递归树节点
 	 function buildTree(node,jsonList){
+	   if(jsonList!=null){
 		 for(var i=0;i<jsonList.length;++i){
 			 
 			 var subNode = new Ext.tree.TreeNode({
@@ -272,9 +321,9 @@ String contextPath = request.getContextPath();
 				buildTree(subNode,jsonList[i].children);
 				}
 			 }
-		 
+		 }
 		 };
-	
+	//初始化树
 	 function initDocumentTree(root){
 		var itemConfig={node:root};
 			var documentPanel=new formwork.web.ui.DocumentTreePanel(itemConfig);
@@ -283,7 +332,7 @@ String contextPath = request.getContextPath();
 		 Ext.fly("documentList-upload-button").on("click",function(){
 		 var grid=new UploadGrid();
 		  var window=new Ext.Window({
-					title:'upload',
+					title:'upload file',
 					width:500,
 					height:300,
 					items:[grid.grid]
@@ -295,12 +344,13 @@ String contextPath = request.getContextPath();
 		
   });			 
 </script>
+ <script src="<%=contextPath %>/js/document/fileCategoryManage.js" type="text/javascript"></script> 
  <script src="<%=contextPath %>/js/document/documentTreePanel.js" type="text/javascript"></script> 
 <div id="documentListDiv">
 <div id="documentListPathBarDiv"></div>
 <div id="documentListToolBarDiv"></div>
-<div id="documentTree" style="float:left;width:10%;height:100%"></div>
-<div id="documentListGridDiv" style="height:100%" ></div>
+<div id="documentTree" style="float:left;width:10%;height:90%"></div>
+<div id="documentListGridDiv" style="height:90%" ></div>
 </div>
 </body>
 </html>

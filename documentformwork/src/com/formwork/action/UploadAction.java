@@ -7,14 +7,20 @@ import java.util.Date;
 import java.util.UUID;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.documentformwork.dao.DocumentDao;
-import com.documentformwork.dao.impl.DocumentServiceImpl;
 import com.documentformwork.entity.Document;
 
 public class UploadAction {
-	private DocumentDao service=new DocumentServiceImpl();
+	private DocumentDao service = null;
 
+	public UploadAction() {
+		ApplicationContext app = new ClassPathXmlApplicationContext(
+				"application.xml");
+		service = (DocumentDao) app.getBean("documentService");
+	}
 
 	private File Filedata;
 
@@ -35,22 +41,16 @@ public class UploadAction {
 		return sb.toString();
 	}
 
-	public DocumentDao getService() {
-		return service;
-	}
-
-	public void setService(DocumentDao service) {
-		this.service = service;
-	}
-
 	public static String format(Date date, String parttern) {
 		DateFormat df = new SimpleDateFormat(parttern);
 		return df.format(date);
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String execute() {
-		System.out.println(service);
-		System.out.println("======");
 		if (Filedata != null && Filedata.length() > 0) {
 			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 			String datastr = format(new Date(), "yyyy@MM@dd");
@@ -60,9 +60,9 @@ public class UploadAction {
 									+ pathSplit(datastr, "@", File.separator));
 			String ext = FiledataFileName.substring(FiledataFileName
 					.lastIndexOf("."));
-			String type=FiledataFileName.substring(FiledataFileName.lastIndexOf(".")+1); 
-			System.out.println("type:"+type);
-			long size=Filedata.length();
+			String type = FiledataFileName.substring(FiledataFileName
+					.lastIndexOf(".") + 1);
+			long size = Filedata.length();
 			File path = new File(uploadPath);
 			if (!path.exists()) {
 				path.mkdirs();
@@ -70,19 +70,11 @@ public class UploadAction {
 			String newName = uuid + ext;
 			String newPath = uploadPath + File.separator + newName;
 			Filedata.renameTo(new File(newPath));
-			System.out.println(uploadPath);
-			System.out.println("FiledataFileName:" + FiledataFileName);
-			System.out.println("文件大小："+Filedata.length());
-		
-			
-			
-			Document document=new Document();
-			
-			document.setCreateeDate(new Date());
-			
+			Document document = new Document();
+			document.setCreateDate(new Date());
 			document.setCreateUser("root");
 			document.setDelflag("false");
-			document.setName(FiledataFileName);
+			document.setName(newName);
 			document.setType(type);
 			document.setSize(size);
 			document.setParentId("1");
@@ -91,8 +83,14 @@ public class UploadAction {
 			document.setStatus("Y");
 			document.setDelflag("N");
 			document.setUpdateDate(new Date());
-			document.setLink(newPath);
-			this.service.save(document);
+			document.setLink("aaa");
+			try {
+				Document d = service.save(document);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Runtime ...");
+
+			}
 		}
 
 		return null;

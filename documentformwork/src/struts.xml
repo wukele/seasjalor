@@ -7,8 +7,19 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.multipart.maxSize" value="2147483648" />
 	<package name="upload" extends="struts-default">
-		<action name="upload" class="com.formwork.action.UploadAction">
-		</action>
+		<action name="upload" class="com.formwork.action.UploadAction" />
+	</package>
+	<!-- 配置下载Action -->
+	<package name="download" extends="struts-default">
+		  <action name="download2" class="com.formwork.action.DownloadAction">
+            <param name="inputPath">/images/struts-gif.zip</param>
+            <result name="success" type="stream">
+                <param name="contentType">application/zip</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
 	</package>
 
 </struts>

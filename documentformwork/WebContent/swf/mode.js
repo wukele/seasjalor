@@ -9,6 +9,7 @@ var FeaturesDemo = {
 			text:"上传",
 			handler:function(){
 			  FeaturesDemo.startSelectedFile();
+			 
 			}
 			
 		
@@ -76,7 +77,7 @@ var FeaturesDemo = {
 				}
 			}	
 			
-		}		
+		}	
 	},
 	stopUpload : function() {
 		FeaturesDemo.SU.stopUpload();

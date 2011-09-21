@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.Temporal;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -14,6 +16,7 @@ import com.documentformwork.dao.DocumentDao;
 import com.documentformwork.entity.Document;
 import com.documentformwork.model.TreeNode;
 import com.documentformwork.util.FormworkUtil;
+import com.vsg.framework.util.VsgUtil;
 
 @SuppressWarnings("unchecked")
 public class DocumentServiceImpl extends BaseDaoServiceImpl<Document, Integer>
@@ -45,12 +48,30 @@ implements DocumentDao {
 								.getMethodByFieldName(f.getName()), null);
 						Object value = method.invoke(obj, null);
 						// 判断是否为日期格式
-						if (FormworkUtil.isDateType(f.getType().getName())) {
+						if ((FormworkUtil.isDateType(f.getType().getName()))
+								&& (method.isAnnotationPresent(Temporal.class))) {
+							Temporal t = (Temporal) method
+									.getAnnotation(Temporal.class);
 							DateFormat df = null;
-							df = new SimpleDateFormat("yyyy-MM-dd");
+							switch (t.value().ordinal()) {
+							case 0:
+								df = new SimpleDateFormat("yyyy-MM-dd");
+								break;
+							case 1:
+								df = new SimpleDateFormat("HH:mm:ss");
+								break;
+							case 2:
+								df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							}
+
 							value = df.format(value);
 						}
-						json.put(f.getName(), value);
+						if (value != null && value != "") {
+							json.put(f.getName(), value.toString());
+						} else {
+							json.put(f.getName(), "");
+
+						}
 					}
 					array.add(json);
 				}
@@ -77,7 +98,7 @@ implements DocumentDao {
 	 * 获取最上层的文档
 	 */
 	public TreeNode getTopFileTreeNode() {
-		
+
 		return null;
 	}
 
