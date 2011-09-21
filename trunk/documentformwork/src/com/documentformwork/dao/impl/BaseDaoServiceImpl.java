@@ -32,8 +32,6 @@ public class BaseDaoServiceImpl<T, ID extends Serializable> extends
 	public BaseDaoServiceImpl() {
 		this.persistentClass = (Class) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
-		System.out.println("当前实体类:"+this.persistentClass.getName());
-		logger.info("当前实体类:" + this.persistentClass.getName());
 
 	}
 
@@ -43,7 +41,8 @@ public class BaseDaoServiceImpl<T, ID extends Serializable> extends
 
 	@Override
 	public void delete(T entity) {
-		getJpaTemplate().remove(entity);
+		System.out.println(getJpaTemplate());
+		getJpaTemplate().remove(getJpaTemplate().merge(entity));
 
 	}
 
@@ -173,10 +172,7 @@ public class BaseDaoServiceImpl<T, ID extends Serializable> extends
 
 	@Override
 	public <T> T find(Class<T> paramClass, Object paramObject) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getJpaTemplate().find(paramClass, paramObject);
 	}
-
-	
 
 }

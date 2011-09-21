@@ -9,6 +9,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,6 +20,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "document_category", uniqueConstraints = {})
 public class FileCategory implements Serializable {
+
+	public FileCategory() {
+	}
+
+	public FileCategory(String id) {
+		this.id = id;
+	}
 
 	@Id
 	@Column(name = "id")
@@ -42,7 +51,7 @@ public class FileCategory implements Serializable {
 	private Date updateDate;
 
 	@ManyToOne(cascade = {}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "parent_Id",unique = false, nullable = true, insertable = true, updatable = true)
+	@JoinColumn(name = "parent_Id", unique = false, nullable = true, insertable = true, updatable = true)
 	private FileCategory parentId;
 
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "parentId")

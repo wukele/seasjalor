@@ -40,7 +40,7 @@ public class CharacterFilter implements Filter {
 		request.setCharacterEncoding(this.character);
 		response.setCharacterEncoding(this.character);
 		
-		response.setContentType("text/html;charset="+this.character);
+		//response.setContentType("text/html;charset="+this.character);
 
 		chain.doFilter(request, response);
 	}

@@ -70,6 +70,10 @@ var Handlers = {
 			 FeaturesDemo.current.commit();
 			}			 
 			FeaturesDemo.startSelectedQuene();
+			//上传成功刷新表格
+			var baseParams={};
+			baseParams.start = 1;
+		    Ext.getCmp("documentListGrid").getStore().reload({params:baseParams});
 		} catch (ex) {
 			alert(ex);
 		}
